@@ -7,7 +7,7 @@ open mat reservation toy project
 요구사항은 구현을 진행하며 설계상 오류나 기능이 추가되면 언제든 수정 가능하다. 살아있는 문서가 되로록 관리한다.
 
 - [ ] 회원
-  - [ ] 체육관원, 체육관장, Admin 으로 구분
+  - [ ] 일반, 관리자 계정으로 구분
   - [ ] 회원가입
   - [ ] 로그인
   - [ ] 로그아웃
@@ -21,3 +21,21 @@ open mat reservation toy project
   - [ ] 오픈매트의 상태는 준비, 운동중, 종료로 관리
 - [ ] 예약
   - [ ] 오픈매트 상태가 준비상태인 경우에만 예약 가능
+
+## 기타(고민거리, 정리 등..)
+
+**TDD로 도메인에 비즈니스 로직을 구현, In -> Out, Out -> In으로 테스트 코드와 함께 구현한다.**
+
+**AcceptanceTest를 지속적으로 깔끔하게 유지해서 누가봐도 API를 이해할 수 있도록 테스트 코드를 관리할 것**
+
+- 회원가입, 로그인과 관련하여 고민해볼것
+  - session clustering
+
+- RestAssured 활용 API 레벨의 테스트를 수행하고, service layer 는 Mockito로 로직을 보호함
+
+  - Prod, Local, Test 환경에 따른 properties를 분리(Prod는 아직 설정하지 않았음 추후 고려예정)
+
+  - 실제 API 호출을 통한 테스트를 위한 DB는 h2 memory db로 수행하고, truncate쿼리를 통해 각 테스트마다 테이블을 초기화하도록 해서 테스트 정합성을 유지
+
+- Domain 별로 패키지를 분리하고 도메인 주도설계 공부를 해볼까 한다..
+
