@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.yzzzzun.openmat.common.BaseEntity;
+import com.yzzzzun.openmat.member.dto.MemberRequest;
 
 @Entity
 @Table(name = "member")
@@ -34,10 +35,35 @@ public class Member extends BaseEntity {
 	protected Member() {
 	}
 
-	public Member(String loginId, String password, String name) {
+	public Member(String loginId, String password, String name, MemberType memberType) {
 		this.loginId = loginId;
 		this.password = password;
 		this.name = name;
+		this.memberType = memberType;
 	}
 
+	public static Member of(MemberRequest memberRequest) {
+		return new Member(memberRequest.getLoginId(), memberRequest.getPassword(), memberRequest.getName(),
+			MemberType.USER);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public MemberType getMemberType() {
+		return memberType;
+	}
 }
