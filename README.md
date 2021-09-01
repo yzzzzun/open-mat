@@ -29,7 +29,7 @@ open mat reservation toy project
 **AcceptanceTest를 지속적으로 깔끔하게 유지해서 누가봐도 API를 이해할 수 있도록 테스트 코드를 관리할 것**
 
 - 회원가입, 로그인과 관련하여 고민해볼것
-  - session clustering
+  - session clustering vs session storage
 
 - RestAssured 활용 API 레벨의 테스트를 수행하고, service layer 는 Mockito로 로직을 보호함
 
