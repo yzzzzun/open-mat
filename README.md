@@ -8,8 +8,8 @@ open mat reservation toy project
 
 - [ ] 회원
   - [ ] 일반, 관리자 계정으로 구분
-  - [ ] 회원가입
-  - [ ] 로그인
+  - [x] 회원가입
+  - [x] 로그인
   - [ ] 로그아웃
 - [ ] 체육관
   - [ ] Admin 계정만 체육관을 등록, 수정, 삭제 가능
@@ -28,14 +28,15 @@ open mat reservation toy project
 
 **AcceptanceTest를 지속적으로 깔끔하게 유지해서 누가봐도 API를 이해할 수 있도록 테스트 코드를 관리할 것**
 
+- Session이 들어간 AcceptanceTest를 어떤식으로 해야할지..
 - 회원가입, 로그인과 관련하여 고민해볼것
-  - session clustering vs session storage
-
+  - 로그인 후 session을 redis에 저장하는 방식으로 설계
+  - Scale-out시 정합성 문제 고려, clustering시 session을 복제해서 공유해야하는 문제 고려
+  - 별도의 storage에 저장하고 필요시 해당 storage를 다중화 하는방식으로 개선하는게 좋아보임
 - RestAssured 활용 API 레벨의 테스트를 수행하고, service layer 는 Mockito로 로직을 보호함
 
   - Prod, Local, Test 환경에 따른 properties를 분리(Prod는 아직 설정하지 않았음 추후 고려예정)
 
   - 실제 API 호출을 통한 테스트를 위한 DB는 h2 memory db로 수행하고, truncate쿼리를 통해 각 테스트마다 테이블을 초기화하도록 해서 테스트 정합성을 유지
-
 - Domain 별로 패키지를 분리하고 도메인 주도설계 공부를 해볼까 한다..
 
