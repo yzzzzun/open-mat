@@ -66,4 +66,8 @@ public class Member extends BaseEntity {
 	public MemberType getMemberType() {
 		return memberType;
 	}
+
+	public void changePassword(String password) {
+		this.password = password;
+	}
 }
