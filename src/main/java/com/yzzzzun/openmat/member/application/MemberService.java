@@ -1,5 +1,7 @@
 package com.yzzzzun.openmat.member.application;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,9 @@ import com.yzzzzun.openmat.member.dto.MemberResponse;
 @Service
 public class MemberService {
 
-	private final MemberRepository memberRepository;
+	private static final Logger LOGGER = LoggerFactory.getLogger("file");
 
+	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
@@ -28,6 +31,7 @@ public class MemberService {
 		member.changePassword(encodedPassword);
 
 		memberRepository.save(member);
+		LOGGER.info("회원 등록 성공 : {}", member);
 		return new MemberResponse(member.getId(), member.getLoginId(), member.getName());
 	}
 
@@ -38,6 +42,7 @@ public class MemberService {
 		if (!matchesPassword(loginRequest, member)) {
 			throw new IllegalArgumentException("잘못된 로그인 정보입니다.");
 		}
+		LOGGER.info("로그인 성공 : {}", member);
 		return LoginResponse.ofMember(member);
 	}
 
